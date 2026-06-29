@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ai-repository-intelligence-backend"
+version = "0.1.0"
+description = "FastAPI backend for the AI Repository Intelligence Platform"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.6",
+  "pydantic-settings>=2.5.2",
+  "SQLAlchemy>=2.0.35",
+  "asyncpg>=0.29.0",
+  "redis>=5.0.8",
+  "neo4j>=5.24.0",
+  "qdrant-client>=1.11.3",
+  "httpx>=0.27.2",
+  "structlog>=24.4.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3.3",
+  "pytest-asyncio>=0.24.0",
+  "ruff>=0.6.8",
+  "mypy>=1.11.2"
+]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+
