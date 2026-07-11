@@ -29,6 +29,8 @@ class Settings(BaseSettings):
     qdrant_url: str = "http://qdrant:6333"
     ollama_url: str = "http://ollama:11434"
     ollama_model: str = "qwen2.5-coder:7b"
+    repository_storage_path: str = "repos"
+    max_scan_file_size_bytes: int = 1_000_000
 
     @property
     def cors_origins(self) -> list[str]:

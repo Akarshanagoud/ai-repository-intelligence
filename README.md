@@ -2,7 +2,7 @@
 
 An enterprise-grade, free and open-source foundation for ingesting, parsing, searching, visualizing, and explaining software repositories with local infrastructure only.
 
-This repository currently implements **Milestone 1**: the project structure, local Docker Compose deployment, FastAPI backend, React/Vite frontend shell, PostgreSQL, Redis, Neo4j Community, Qdrant, Ollama, and a worker placeholder.
+This repository currently implements **Milestone 2**: the local platform foundation plus repository ingestion, file metadata scanning, PostgreSQL persistence, and a dashboard for scanning/viewing repositories.
 
 ## Architecture Decisions
 
@@ -19,7 +19,7 @@ This repository currently implements **Milestone 1**: the project structure, loc
 
 | Service | URL | Purpose |
 | --- | --- | --- |
-| Frontend | http://localhost:5173 | React dashboard shell |
+| Frontend | http://localhost:5173 | React dashboard and repository scanner |
 | Backend API | http://localhost:8000 | FastAPI application |
 | API docs | http://localhost:8000/docs | OpenAPI documentation |
 | PostgreSQL | localhost:5432 | Structured metadata |
@@ -54,6 +54,28 @@ This repository currently implements **Milestone 1**: the project structure, loc
    curl http://localhost:8000/api/v1/health
    ```
 
+5. Scan a repository:
+
+   - Open http://localhost:5173 and use the Repository Scanner form.
+   - Paste a public Git URL such as `https://github.com/owner/repo.git`.
+   - Or submit a local path that is available inside the backend container.
+
+   API example:
+
+   ```bash
+   curl -X POST http://localhost:8000/api/v1/repositories \
+     -H "Content-Type: application/json" \
+     -d '{"source":"https://github.com/owner/repo.git"}'
+   ```
+
+   Docker-local test example:
+
+   ```bash
+   curl -X POST http://localhost:8000/api/v1/repositories \
+     -H "Content-Type: application/json" \
+     -d '{"source":"/app/app","name":"backend-app"}'
+   ```
+
 ## Local Development
 
 Backend:
@@ -75,22 +97,23 @@ npm install
 npm run dev
 ```
 
-## Milestone 1 Scope
+## Milestone 2 Scope
 
 Implemented:
 
 - Production-oriented folder structure.
 - FastAPI app with typed settings, CORS, health endpoint, and structured logging.
-- React/TypeScript dashboard shell connected to backend health.
+- React/TypeScript dashboard connected to backend health and repository scanning.
 - Docker Compose services for backend, worker, frontend, PostgreSQL, Redis, Neo4j, Qdrant, and Ollama.
 - Backend and frontend Dockerfiles.
+- Repository scan API for Git URLs and backend-visible local paths.
+- PostgreSQL metadata tables for repositories and scanned files.
+- File metadata extraction for path, extension, language, size, and line counts.
 - Basic tests and scripts.
 
 Deferred to future milestones:
 
 - Authentication and RBAC.
-- Repository cloning and metadata extraction.
 - Tree-sitter parsing.
 - Embeddings, GraphRAG, and local LLM question answering.
 - Security scanning and evaluation.
-

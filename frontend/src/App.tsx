@@ -1,5 +1,6 @@
 import { Activity, Boxes, BrainCircuit, Database, GitBranch, Network, Server } from "lucide-react";
 
+import { RepositoryWorkspace } from "./components/RepositoryWorkspace";
 import { ServiceStatusGrid } from "./components/ServiceStatusGrid";
 import { useHealth } from "./hooks/useHealth";
 
@@ -18,7 +19,7 @@ export function App() {
       <section className="border-b border-line bg-white">
         <div className="mx-auto flex max-w-7xl flex-col gap-8 px-4 py-8 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-3xl min-w-0">
-            <p className="text-sm font-semibold uppercase tracking-wide text-signal">Milestone 1</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-signal">Milestone 2</p>
             <h1 className="mt-3 max-w-full break-words text-3xl font-semibold tracking-normal sm:text-4xl md:text-5xl">
               AI Repository Intelligence Platform
             </h1>
@@ -33,6 +34,8 @@ export function App() {
           </div>
         </div>
       </section>
+
+      <RepositoryWorkspace />
 
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[1.4fr_0.8fr]">
         <div className="min-w-0 max-w-[calc(100vw-2rem)] overflow-hidden rounded border border-line bg-white p-5 shadow-soft sm:max-w-full sm:p-6">

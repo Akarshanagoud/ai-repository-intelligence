@@ -1,9 +1,19 @@
+from contextlib import asynccontextmanager
+from collections.abc import AsyncIterator
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.routes import api_router
 from app.core.config import get_settings
+from app.db.session import initialize_database
 from app.observability.logging import configure_logging
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+    await initialize_database()
+    yield
 
 
 def create_app() -> FastAPI:
@@ -14,6 +24,7 @@ def create_app() -> FastAPI:
         title=settings.app_name,
         version="0.1.0",
         description="Local-first AI repository intelligence platform.",
+        lifespan=lifespan,
     )
 
     app.add_middleware(
@@ -29,4 +40,3 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-
