@@ -1,12 +1,15 @@
-from fastapi.testclient import TestClient
+import httpx
+import pytest
 
 from app.main import create_app
 
 
-def test_health_returns_configured_services() -> None:
-    client = TestClient(create_app())
+@pytest.mark.asyncio
+async def test_health_returns_configured_services() -> None:
+    transport = httpx.ASGITransport(app=create_app())
 
-    response = client.get("/api/v1/health")
+    async with httpx.AsyncClient(transport=transport, base_url="http://test") as client:
+        response = await client.get("/api/v1/health")
 
     assert response.status_code == 200
     payload = response.json()
@@ -19,4 +22,3 @@ def test_health_returns_configured_services() -> None:
         "qdrant",
         "ollama",
     }
-
