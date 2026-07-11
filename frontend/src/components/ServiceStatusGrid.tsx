@@ -32,15 +32,15 @@ export function ServiceStatusGrid({
   return (
     <div className="mt-6 grid gap-3 md:grid-cols-2">
       {services.map((service) => (
-        <div className="rounded border border-line p-4" key={service.name}>
+        <div className="min-w-0 overflow-hidden rounded border border-line p-4" key={service.name}>
           <div className="flex items-center justify-between gap-3">
-            <div>
+            <div className="min-w-0">
               <div className="text-sm font-semibold capitalize">{service.name}</div>
               <div className="mt-1 text-xs uppercase tracking-wide text-slate-500">{service.kind}</div>
             </div>
-            <CircleCheck className="h-5 w-5 text-signal" />
+            <CircleCheck className="h-5 w-5 shrink-0 text-signal" />
           </div>
-          <div className="mt-4 truncate rounded bg-panel px-3 py-2 font-mono text-xs text-slate-600">
+          <div className="mt-4 max-w-full truncate rounded bg-panel px-3 py-2 font-mono text-xs text-slate-600">
             {service.url}
           </div>
         </div>
@@ -48,4 +48,3 @@ export function ServiceStatusGrid({
     </div>
   );
 }
-
