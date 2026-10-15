@@ -1,5 +1,7 @@
 # AI Repository Intelligence Platform
 
+**Docs:** [Architecture and use cases](docs/ARCHITECTURE.md)
+
 An enterprise-grade, free and open-source foundation for ingesting, parsing, searching, visualizing, and explaining software repositories with local infrastructure only.
 
 This repository currently implements **Milestone 2**: the local platform foundation plus repository ingestion, file metadata scanning, PostgreSQL persistence, and a dashboard for scanning/viewing repositories.
