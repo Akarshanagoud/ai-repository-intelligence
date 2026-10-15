@@ -20,7 +20,7 @@ export function RepositoryWorkspace() {
 
   return (
     <section className="mx-auto grid max-w-7xl gap-6 px-4 pb-10 sm:px-6 lg:grid-cols-[0.9fr_1.4fr]">
-      <div className="min-w-0 rounded border border-line bg-white p-5 shadow-soft">
+      <div className="min-w-0 rounded-sm border border-line bg-white p-5 shadow-soft">
         <div className="flex items-center justify-between gap-3">
           <div className="flex min-w-0 items-center gap-3">
             <FolderGit2 className="h-5 w-5 shrink-0 text-signal" />
@@ -28,7 +28,7 @@ export function RepositoryWorkspace() {
           </div>
           <button
             aria-label="Refresh repositories"
-            className="rounded border border-line p-2 text-slate-600 hover:bg-panel"
+            className="rounded-sm border border-line p-2 text-slate-600 hover:bg-panel"
             onClick={() => void refresh()}
             type="button"
           >
@@ -48,7 +48,7 @@ export function RepositoryWorkspace() {
           <label className="block">
             <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">Git URL or local path</span>
             <input
-              className="mt-2 w-full rounded border border-line px-3 py-2 text-sm outline-none focus:border-signal"
+              className="mt-2 w-full rounded-sm border border-line px-3 py-2 text-sm outline-hidden focus:border-signal"
               onChange={(event) => setSource(event.target.value)}
               placeholder="https://github.com/owner/repo.git"
               value={source}
@@ -57,14 +57,14 @@ export function RepositoryWorkspace() {
           <label className="block">
             <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">Display name</span>
             <input
-              className="mt-2 w-full rounded border border-line px-3 py-2 text-sm outline-none focus:border-signal"
+              className="mt-2 w-full rounded-sm border border-line px-3 py-2 text-sm outline-hidden focus:border-signal"
               onChange={(event) => setName(event.target.value)}
               placeholder="Optional"
               value={name}
             />
           </label>
           <button
-            className="inline-flex w-full items-center justify-center gap-2 rounded bg-signal px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+            className="inline-flex w-full items-center justify-center gap-2 rounded-sm bg-signal px-4 py-2 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
             disabled={!source.trim() || scanning}
             type="submit"
           >
@@ -74,14 +74,14 @@ export function RepositoryWorkspace() {
         </form>
 
         {error ? (
-          <div className="mt-4 rounded border border-berry/30 bg-rose-50 p-3 text-sm text-berry">{error}</div>
+          <div className="mt-4 rounded-sm border border-berry/30 bg-rose-50 p-3 text-sm text-berry">{error}</div>
         ) : null}
 
         <div className="mt-6 space-y-3">
           {loading ? (
-            <div className="rounded border border-line bg-panel p-3 text-sm text-slate-600">Loading repositories</div>
+            <div className="rounded-sm border border-line bg-panel p-3 text-sm text-slate-600">Loading repositories</div>
           ) : repositories.length === 0 ? (
-            <div className="rounded border border-line bg-panel p-3 text-sm text-slate-600">No repositories scanned yet</div>
+            <div className="rounded-sm border border-line bg-panel p-3 text-sm text-slate-600">No repositories scanned yet</div>
           ) : (
             repositories.map((repository) => (
               <RepositoryListItem
@@ -95,7 +95,7 @@ export function RepositoryWorkspace() {
         </div>
       </div>
 
-      <div className="min-w-0 rounded border border-line bg-white p-5 shadow-soft">
+      <div className="min-w-0 rounded-sm border border-line bg-white p-5 shadow-soft">
         <div className="flex items-center gap-3">
           <FileCode2 className="h-5 w-5 text-signal" />
           <h2 className="truncate text-xl font-semibold">Scan Results</h2>
@@ -111,13 +111,13 @@ export function RepositoryWorkspace() {
 
             <div className="mt-4 flex flex-wrap gap-2">
               {selectedRepository.languages.map((language) => (
-                <span className="rounded border border-line bg-panel px-2 py-1 text-xs font-semibold" key={language}>
+                <span className="rounded-sm border border-line bg-panel px-2 py-1 text-xs font-semibold" key={language}>
                   {language}
                 </span>
               ))}
             </div>
 
-            <div className="mt-5 max-h-96 overflow-auto rounded border border-line">
+            <div className="mt-5 max-h-96 overflow-auto rounded-sm border border-line">
               <table className="w-full min-w-[640px] border-collapse text-left text-sm">
                 <thead className="bg-panel text-xs uppercase tracking-wide text-slate-500">
                   <tr>
@@ -141,7 +141,7 @@ export function RepositoryWorkspace() {
             </div>
           </div>
         ) : (
-          <div className="mt-5 rounded border border-line bg-panel p-4 text-sm text-slate-600">
+          <div className="mt-5 rounded-sm border border-line bg-panel p-4 text-sm text-slate-600">
             Scan a repository to see file metadata, languages, and the first 200 files.
           </div>
         )}
@@ -161,7 +161,7 @@ function RepositoryListItem({
 }) {
   return (
     <button
-      className={`w-full rounded border p-3 text-left ${
+      className={`w-full rounded-sm border p-3 text-left ${
         active ? "border-signal bg-emerald-50" : "border-line bg-white hover:bg-panel"
       }`}
       onClick={onClick}
@@ -172,7 +172,7 @@ function RepositoryListItem({
           <div className="truncate text-sm font-semibold">{repository.name}</div>
           <div className="mt-1 truncate text-xs text-slate-500">{repository.source}</div>
         </div>
-        <span className="shrink-0 rounded bg-panel px-2 py-1 text-xs font-semibold">{repository.status}</span>
+        <span className="shrink-0 rounded-sm bg-panel px-2 py-1 text-xs font-semibold">{repository.status}</span>
       </div>
     </button>
   );
@@ -180,7 +180,7 @@ function RepositoryListItem({
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded border border-line bg-panel p-3">
+    <div className="rounded-sm border border-line bg-panel p-3">
       <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</div>
       <div className="mt-2 break-words text-lg font-semibold">{value}</div>
     </div>

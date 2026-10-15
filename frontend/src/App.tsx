@@ -28,7 +28,7 @@ export function App() {
               and private LLM-powered code understanding.
             </p>
           </div>
-          <div className="grid max-w-[calc(100vw-2rem)] grid-cols-1 gap-3 overflow-hidden rounded border border-line bg-panel p-3 sm:max-w-sm sm:grid-cols-2 sm:p-4">
+          <div className="grid max-w-[calc(100vw-2rem)] grid-cols-1 gap-3 overflow-hidden rounded-sm border border-line bg-panel p-3 sm:max-w-sm sm:grid-cols-2 sm:p-4">
             <Metric label="Backend" value={error ? "Offline" : loading ? "Checking" : "Online"} />
             <Metric label="Mode" value={data?.environment ?? "local"} />
           </div>
@@ -38,7 +38,7 @@ export function App() {
       <RepositoryWorkspace />
 
       <section className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 lg:grid-cols-[1.4fr_0.8fr]">
-        <div className="min-w-0 max-w-[calc(100vw-2rem)] overflow-hidden rounded border border-line bg-white p-5 shadow-soft sm:max-w-full sm:p-6">
+        <div className="min-w-0 max-w-[calc(100vw-2rem)] overflow-hidden rounded-sm border border-line bg-white p-5 shadow-soft sm:max-w-full sm:p-6">
           <div className="flex items-center gap-3">
             <Server className="h-5 w-5 text-signal" />
             <h2 className="text-xl font-semibold">Local Stack</h2>
@@ -46,7 +46,7 @@ export function App() {
           <ServiceStatusGrid services={data?.services ?? []} loading={loading} error={error} />
         </div>
 
-        <div className="min-w-0 max-w-[calc(100vw-2rem)] overflow-hidden rounded border border-line bg-white p-5 shadow-soft sm:max-w-full sm:p-6">
+        <div className="min-w-0 max-w-[calc(100vw-2rem)] overflow-hidden rounded-sm border border-line bg-white p-5 shadow-soft sm:max-w-full sm:p-6">
           <div className="flex items-center gap-3">
             <Activity className="h-5 w-5 text-amber" />
             <h2 className="text-xl font-semibold">Delivery Roadmap</h2>
@@ -55,7 +55,7 @@ export function App() {
             {capabilities.map((capability) => {
               const Icon = capability.icon;
               return (
-                <div className="flex items-center justify-between rounded border border-line p-3" key={capability.label}>
+                <div className="flex items-center justify-between rounded-sm border border-line p-3" key={capability.label}>
                   <div className="flex min-w-0 items-center gap-3">
                     <Icon className="h-4 w-4 shrink-0 text-slate-500" />
                     <span className="truncate text-sm font-medium">{capability.label}</span>
@@ -87,7 +87,7 @@ export function App() {
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="min-w-0 rounded border border-line bg-white p-3">
+    <div className="min-w-0 rounded-sm border border-line bg-white p-3">
       <div className="text-xs font-semibold uppercase tracking-wide text-slate-500">{label}</div>
       <div className="mt-2 break-words text-lg font-semibold">{value}</div>
     </div>
@@ -104,7 +104,7 @@ function InfoPanel({
   title: string;
 }) {
   return (
-    <div className="rounded border border-line bg-white p-5 shadow-soft">
+    <div className="rounded-sm border border-line bg-white p-5 shadow-soft">
       <div className="flex items-center gap-3 text-signal">
         {icon}
         <h3 className="font-semibold text-ink">{title}</h3>

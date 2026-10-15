@@ -1,6 +1,25 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #18212f;
+  --color-panel: #f6f7f9;
+  --color-line: #d8dee8;
+  --color-signal: #0f766e;
+  --color-amber: #b45309;
+  --color-berry: #9f1239;
+  --shadow-soft: 0 18px 50px rgba(24, 33, 47, 0.08);
+}
+
+/* Tailwind 4 defaults borders to currentColor; keep the Tailwind 3 look. */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 :root {
   font-family:

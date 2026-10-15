@@ -52,9 +52,7 @@ jobs:
 
       - name: Audit frontend dependencies
         working-directory: frontend
-        # Production dependencies are what ships. Remaining dev-only advisories sit in
-        # Tailwind 3 build tooling and need the Tailwind 4 migration to clear.
-        run: npm audit --omit=dev --audit-level=moderate
+        run: npm audit --audit-level=moderate
 
       - name: Build frontend
         working-directory: frontend
